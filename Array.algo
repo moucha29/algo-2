@@ -1,0 +1,37 @@
+ALGORITHM SUM_ARRAY
+VAR
+    set1 : ARRAY_OF INTEGER[n1];
+    set2 : ARRAY_OF INTEGER[n2];
+    set : ARRAY_OF INTEGER[n1+n2];
+    i,j,k,l,SUM_DISTINCT,SUM_COMMUN : INTEGER := 0;
+    found : BOOLEAN
+
+BEGIN
+    write("type the number of el in set1")
+    read(n1)
+    write("type the number of el in set2")
+    read(n2)
+    FOR k FROM 0 TO n1-1  DO
+        read(set1[k]);
+    END_FOR
+    FOR l FROM 0 TO n2-1  DO
+        read(set2[l]);
+    END_FOR
+    //concat set1 and set2
+    set := concat(set1,set2);
+    FOR i FROM 0 TO set.length-1 DO
+    found := false;
+        FOR j FROM 0 TO set.length-1 DO
+            IF (set[i]= set[j] AND i<>j) THEN
+            found := true;
+            SUM_COMMUN = SUM_COMMUN + set[i];
+            END_IF
+        END_FOR
+        IF (found = false) THEN
+        SUM_DISTINCT = SUM_DISTINCT + set[i];
+        END_IF
+    END_FOR
+    write("Sum of distinct el is", SUM_DISTINCT)
+    write("Sum of commun el is", SUM_COMMUN)
+
+END
